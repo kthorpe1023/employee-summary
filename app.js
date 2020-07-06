@@ -55,9 +55,9 @@ const manager = function() {
     {type: "input", message: "What is the employee's name?", name: "Name"},
     {type: "input", message: "What is the employee's ID?", name: "id"},
     {type: "input", message: "What is the employee's email?", name: "Email"},
-    {type: "input", message: "What is their office number?", name: "Office"}
+    {type: "input", message: "What is their office number?", name: "office"}
 ]).then((data) => {
-    let manager =  new Manager(data.Name, data.id, data.Email, data.role, data.Office);
+    let manager =  new Manager(data.Name, data.id, data.Email, data.role, data.office);
     allManagers.push(manager);
     allEmployees.push(manager);
     console.log(allEmployees);
@@ -96,7 +96,12 @@ start();
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 const registerEmployees = function(){
-    console.log(render(allEmployees));
+    let employeeSet = render(allEmployees);
+    return fs.writeFile(outputPath, employeeSet, function(err){
+        if(err){
+            console.log("err with writing file")
+        }
+    })
 }
 
 // After you have your html, you're now ready to create an HTML file using the HTML
@@ -104,9 +109,7 @@ const registerEmployees = function(){
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-const fileTime = function(){
-    fs.writeFile("team.html")
-}
+
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
