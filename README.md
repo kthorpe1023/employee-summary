@@ -28,6 +28,8 @@ Type "node app.js" and you will be prompted with questions. Different questions 
 ## Credits
 
 Katie Thorpe
+
+Trilogy created the front end code for the generated webpage
 ## Test
 
 n/a
